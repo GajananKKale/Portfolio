@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      section {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        /* background-color: bisque; */
+        gap: 10px;
+        background: linear-gradient(pink, rgb(216, 149, 255));
+      }
+
+      section h1 {
+        font-size: 40px;
+        color: white;
+        text-shadow: 2px 2px 3px red;
+      }
+
+      section div.main_div {
+        width: 275px;
+        height: 400px;
+        border: 5px solid rgb(215, 215, 215);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 10px;
+        position: relative;
+        border-radius: 10px;
+        background-color: bisque;
+        box-shadow: 1px 1px 10px 3px;
+        background: linear-gradient(
+          rgb(255, 255, 90),
+          rgb(255, 77, 77),
+          rgb(109, 109, 255)
+        );
+      }
+
+      section .main_div div:nth-of-type(1) {
+        position: absolute;
+        color: red;
+        width: 100%;
+        height: 80px;
+        top: 0;
+        left: 0;
+        border-radius: 5px;
+        border: 5px solid rgb(255, 252, 252);
+        display: flex;
+      }
+
+      section .main_div div:nth-of-type(1) input {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        font-size: 30px;
+        display: flex;
+        justify-content: end;
+        align-items: end;
+        padding-right: 2px;
+        border: 1px solid black;
+        border-radius: 5px;
+        /* background: linear-gradient(rgb(255, 255, 168), rgb(255, 182, 182)); */
+      }
+
+      section .main_div div:nth-of-type(2) {
+        position: absolute;
+        top: 80px;
+        width: 100%;
+        /* border: 10px solid red; */
+        min-height: calc(100% - 80px);
+        border-radius: 10px;
+      }
+
+      .main_div div:nth-of-type(2) table {
+        position: absolute;
+        /* border: 5px solid black; */
+        width: 100%;
+        min-height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: center;
+        gap: 10px;
+        border-spacing: 6px;
+      }
+
+      .main_div div:nth-of-type(2) table tr {
+        border: 5px solid blue;
+      }
+      .main_div div:nth-of-type(2) table td {
+        width: 55px;
+        height: 55px;
+        border: 2px solid blue;
+        border-radius: 50%;
+      }
+
+      .main_div div:nth-of-type(2) table td button {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        color: black;
+        font-size: 25px;
+      }
+      .main_div div:nth-of-type(2) table td.colspan {
+        border: 2px solid blue;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div>
+        <h1>Calculator</h1>
+      </div>
+      <div class="main_div">
+        <div>
+          <input type="text" id="Equation" readonly />
+          <!-- <button><span>0</span></button> -->
+        </div>
+        <div>
+          <table>
+            <tr>
+              <td><button onclick="clearall()">AC</button></td>
+              <td><button onclick="clearone()">CL</button></td>
+              <td><button data-value="%" class="in">%</button></td>
+              <td><button data-value="/" class="in">/</button></td>
+            </tr>
+            <tr>
+              <td><button data-value="7" class="in">7</button></td>
+              <td><button data-value="8" class="in">8</button></td>
+              <td><button data-value="9" class="in">9</button></td>
+              <td><button data-value="*" class="in">X</button></td>
+            </tr>
+            <tr>
+              <td><button data-value="4" class="in">4</button></td>
+              <td><button data-value="5" class="in">5</button></td>
+              <td><button data-value="6" class="in">6</button></td>
+              <td><button data-value="-" class="in">-</button></td>
+            </tr>
+            <tr>
+              <td><button data-value="1" class="in">1</button></td>
+              <td><button data-value="2" class="in">2</button></td>
+              <td><button data-value="3" class="in">3</button></td>
+              <td><button data-value="+" class="in">+</button></td>
+            </tr>
+            <tr>
+              <td colspan="2" class="colspan">
+                <button style="border-radius: 7px" data-value="0" class="in">
+                  0
+                </button>
+              </td>
+              <td><button data-value="." class="in">.</button></td>
+              <td><button onclick="solve()">=</button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      let input = document.querySelectorAll(".in");
+      console.log(input);
+
+      let eq = document.getElementById("Equation");
+      let inputs = document.querySelectorAll(".in");
+
+      inputs.forEach((x) => {
+        // eq.value += x.value // this is for input tag
+        x.addEventListener("click", () => {
+          eq.value += x.getAttribute("data-value");
+          console.log("typed");
+        });
+      });
+
+      function solve() {
+        // console.log("solve");
+        eq.value = eval(eq.value);
+        if (eq.value === "" || eq.value === "undefined") {
+          return (eq.value = "");
+        } else if (eq.value === "Infinity") {
+          alert("Cannot divide by 0");
+          eq.value = "";
+        } else {
+          eq.value = eval(eq.value);
+        }
+
+        // let result = eval(eq.value);
+        // eq.value = result == "Infinity" ? "" : result;
+      }
+
+      function clearall() {
+        // let eqq = document.getElementById("Equation");
+        // eqq.value = "";
+        eq.value = "";
+      }
+      function clearone() {
+        eq.value = eq.value.substring(0, eq.value.length - 1);
+        // eq.value = eq.value.slice(0, -1);
+      }
+    </script>
+  </body>
+</html>

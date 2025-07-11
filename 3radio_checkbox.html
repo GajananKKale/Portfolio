@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radio Checkbox</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        width: 100%;
+        min-height: 100vh;
+        background: linear-gradient(rgb(249, 255, 178), rgb(231, 195, 255));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 300px;
+        min-height: 400px;
+        border: 1px solid black;
+        border-radius: 10px;
+        gap: 10px;
+        box-shadow: 1px 1px 3px black;
+        background-color: beige;
+      }
+      section div {
+        width: 220px;
+        padding: 10px;
+        /* border: 1px solid blue; */
+      }
+      #para p:nth-of-type(1) {
+        color: rgb(255, 0, 0);
+        font-size: 18px;
+        margin-top: 10px;
+      }
+      #para p:nth-of-type(2) {
+        color: rgb(4, 54, 255);
+        font-size: 18px;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        color: white;
+
+        background-color: rgba(37, 37, 149, 0.995);
+        font-size: 16px;
+        font-family: helvetica;
+        box-shadow: 1px 1px 5px black;
+        border-radius: 10px;
+      }
+      button:hover {
+        background-color: rgb(4, 4, 255);
+        box-shadow: 1px 1px 1px black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Checkbox & Radio</h1>
+    <section>
+      <div>
+        <input type="checkbox" id="myCheckbox" />
+        <label for="myCheckbox">Tickmark The Given Box</label>
+      </div>
+      <div>
+        <input type="radio" id="myCricket" name="sport" />
+        <label for="myCricket">Cricket</label>
+      </div>
+      <div>
+        <input type="radio" id="myChess" name="sport" />
+        <label for="myChess">Chess</label>
+      </div>
+      <div>
+        <input type="radio" id="myFootball" name="sport" />
+        <label for="myFootball">Football</label>
+      </div>
+
+      <button id="myBtn">Click Me</button>
+    </section>
+
+    <div id="para">
+      <p id="checkboxMark"></p>
+      <p id="radiomark"></p>
+    </div>
+
+    <script>
+      let myCheckbox = document.getElementById("myCheckbox");
+      let myCricket = document.getElementById("myCricket");
+      let myChess = document.getElementById("myChess");
+      let myFootball = document.getElementById("myFootball");
+
+      let checkboxMark = document.getElementById("checkboxMark");
+      let radiomark = document.querySelector("#radiomark");
+
+      let myBtn = document.querySelector("#myBtn");
+
+      myBtn.addEventListener("click", function () {
+        if (myCheckbox.checked) {
+          checkboxMark.textContent = "You Ticked box.";
+        } else {
+          checkboxMark.textContent = "You have NOT ticked the box.";
+        }
+
+        if (myCricket.checked) {
+          radiomark.textContent = "You love playing cricket.";
+        } else if (myChess.checked) {
+          radiomark.textContent = "You love playing Chess.";
+        } else if (myFootball.checked) {
+          radiomark.textContent = "You love playing Footbal.";
+        } else {
+          checkboxMark.textContent =
+            "You have NOT selected option, please select";
+        }
+      });
+    </script>
+  </body>
+</html>

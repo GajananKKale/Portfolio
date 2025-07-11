@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Increase Decrease Number</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+      }
+      body {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        background: linear-gradient(rgb(187, 254, 166), rgb(246, 180, 242));
+      }
+      section {
+        width: 300px;
+        min-height: 400px;
+        border: 1px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        position: relative;
+        gap: 10px;
+        background: linear-gradient(rgb(212, 254, 166), rgb(175, 199, 251));
+        border-radius: 10px;
+      }
+      section h1 {
+        font-size: 20px;
+        position: absolute;
+        top: 40px;
+        color: rgb(79, 78, 78);
+        text-shadow: 1px 1px 2px red;
+      }
+      section div:nth-of-type(1) {
+        width: 250px;
+        height: 80px;
+        border: 1px solid black;
+        font-size: 30px;
+        padding: 5px;
+        border-radius: 10px;
+        background-color: beige;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      section div button {
+        padding: 6px;
+        border-radius: 10px;
+        border: none;
+        font-weight: bold;
+        font-size: 16px;
+      }
+      section div button:nth-of-type(1) {
+        background-color: red;
+        color: white;
+        font-family: Helvetica, sans-serif;
+      }
+      section div button:nth-of-type(2) {
+        background-color: blue;
+        color: white;
+        font-family: Helvetica, sans-serif;
+      }
+      section div button:nth-of-type(3) {
+        background-color: green;
+        color: white;
+        font-family: Helvetica;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h1>INCREASE&DECREASE</h1>
+      <div id="text">0</div>
+      <div>
+        <button>Decrease</button>
+        <button>Reset</button>
+        <button>Increase</button>
+      </div>
+    </section>
+    <script>
+      let btns = document.querySelectorAll("button");
+      let text = document.getElementById("text");
+      let count = 0;
+
+      btns[2].addEventListener("click", function () {
+        count++;
+        text.textContent = count;
+      });
+
+      btns[1].addEventListener("click", function () {
+        count = 0;
+        text.textContent = count;
+      });
+
+      btns[0].addEventListener("click", function () {
+        count--;
+        text.textContent = count;
+      });
+    </script>
+  </body>
+</html>
